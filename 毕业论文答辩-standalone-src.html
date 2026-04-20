@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毕业论文答辩 — 陈向欢</title>
+<script src="deck-stage.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail" data-bg-color="#1A2744">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#1A2744"/>
+    <rect x="200" y="260" width="800" height="8" rx="4" fill="#4A8FE7" opacity="0.6"/>
+    <rect x="300" y="320" width="600" height="8" rx="4" fill="#fff" opacity="0.3"/>
+    <rect x="350" y="380" width="500" height="6" rx="3" fill="#fff" opacity="0.15"/>
+    <text x="600" y="220" text-anchor="middle" font-family="sans-serif" font-size="64" font-weight="700" fill="#fff" opacity="0.9">答辩</text>
+    <rect x="480" y="460" width="240" height="48" rx="8" fill="#2B5EA7" opacity="0.5"/>
+  </svg>
+</template>
+<style>
+  :root {
+    --c-bg: #FFFFFF;
+    --c-bg-alt: #F4F6FA;
+    --c-bg-dark: #1A2744;
+    --c-bg-accent: #2B5EA7;
+    --c-text: #1A2744;
+    --c-text-light: #5A6A85;
+    --c-accent: #2B5EA7;
+    --c-accent-light: #4A8FE7;
+    --c-highlight: #E8563A;
+    --c-border: #D6DDE8;
+    --c-positive: #2E8B57;
+    --c-negative: #D94040;
+    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Noto Serif SC', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  section {
+    font-family: var(--font-sans);
+    color: var(--c-text);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Slide types ── */
+  .slide-title {
+    background: var(--c-bg-dark);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px;
+  }
+  .slide-title h1 {
+    font-family: var(--font-serif);
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    max-width: 1400px;
+  }
+  .slide-title .meta {
+    margin-top: 52px;
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+  }
+  .slide-title .meta strong { color: rgba(255,255,255,0.92); font-weight: 500; }
+
+  .slide-section {
+    background: var(--c-bg-accent);
+    color: #fff;
+    justify-content: center;
+    padding: 100px 120px;
+  }
+  .slide-section .section-num {
+    font-size: 120px;
+    font-weight: 700;
+    opacity: 0.15;
+    position: absolute;
+    right: 100px;
+    bottom: 60px;
+    font-family: var(--font-serif);
+  }
+  .slide-section h2 {
+    font-family: var(--font-serif);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .slide-section .section-sub {
+    margin-top: 24px;
+    font-size: 30px;
+    opacity: 0.75;
+    font-weight: 400;
+    max-width: 1000px;
+    line-height: 1.6;
+  }
+
+  .slide-content {
+    background: var(--c-bg);
+    padding: 90px 100px 80px;
+  }
+  .slide-content h3 {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 48px;
+    line-height: 1.3;
+    border-left: 6px solid var(--c-accent);
+    padding-left: 24px;
+  }
+
+  .slide-alt {
+    background: var(--c-bg-alt);
+    padding: 90px 100px 80px;
+  }
+  .slide-alt h3 {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 48px;
+    line-height: 1.3;
+    border-left: 6px solid var(--c-accent);
+    padding-left: 24px;
+  }
+
+  /* ── Shared components ── */
+  .body-text {
+    font-size: 30px;
+    line-height: 1.75;
+    color: var(--c-text);
+    max-width: 1600px;
+  }
+  .body-text.light { color: var(--c-text-light); }
+
+  .bullet-list {
+    list-style: none;
+    font-size: 30px;
+    line-height: 1.7;
+    color: var(--c-text);
+  }
+  .bullet-list li {
+    padding-left: 36px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--c-accent);
+  }
+  .bullet-list li strong { color: var(--c-accent); font-weight: 600; }
+
+  .highlight-box {
+    background: rgba(43,94,167,0.06);
+    border-left: 5px solid var(--c-accent);
+    padding: 28px 32px;
+    border-radius: 0 12px 12px 0;
+    margin-top: 24px;
+    font-size: 28px;
+    line-height: 1.7;
+    color: var(--c-text);
+  }
+  .highlight-box.negative {
+    background: rgba(217,64,64,0.06);
+    border-left-color: var(--c-negative);
+  }
+
+  .rq-box {
+    background: var(--c-bg-dark);
+    color: #fff;
+    padding: 28px 36px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 28px;
+    line-height: 1.6;
+  }
+  .rq-box .rq-label {
+    font-weight: 700;
+    color: var(--c-accent-light);
+    margin-right: 12px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    flex: 1;
+  }
+  .two-col > div { display: flex; flex-direction: column; }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    flex: 1;
+  }
+
+  .stat-card {
+    background: #fff;
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .stat-card .stat-num {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--c-accent);
+    font-family: var(--font-serif);
+  }
+  .stat-card .stat-label {
+    font-size: 24px;
+    color: var(--c-text-light);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* Tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 24px;
+  }
+  .data-table th {
+    background: var(--c-bg-dark);
+    color: #fff;
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .data-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--c-border);
+    font-size: 22px;
+    line-height: 1.5;
+  }
+  .data-table tr:nth-child(even) td { background: var(--c-bg-alt); }
+  .data-table .positive { color: var(--c-positive); font-weight: 600; }
+  .data-table .negative { color: var(--c-negative); font-weight: 600; }
+
+  /* Model diagram */
+  .model-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex: 1;
+    padding: 20px 0;
+  }
+  .model-box {
+    background: #fff;
+    border: 2.5px solid var(--c-accent);
+    border-radius: 16px;
+    padding: 24px 32px;
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--c-accent);
+    min-width: 200px;
+    line-height: 1.5;
+  }
+  .model-box.mediator {
+    background: var(--c-accent);
+    color: #fff;
+    border-color: var(--c-accent);
+  }
+  .model-box.moderator {
+    background: var(--c-highlight);
+    color: #fff;
+    border-color: var(--c-highlight);
+  }
+  .model-box.dv {
+    background: var(--c-bg-dark);
+    color: #fff;
+    border-color: var(--c-bg-dark);
+  }
+  .model-arrow {
+    font-size: 28px;
+    color: var(--c-text-light);
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .model-arrow .arrow-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--c-text-light);
+  }
+
+  .hypothesis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .h-card {
+    background: #fff;
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    font-size: 25px;
+    line-height: 1.6;
+  }
+  .h-card .h-label {
+    font-weight: 700;
+    color: var(--c-accent);
+    margin-right: 8px;
+    font-size: 26px;
+  }
+  .h-card.full { grid-column: 1 / -1; }
+
+  .result-badge {
+    display: inline-block;
+    background: var(--c-positive);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  .footnote {
+    font-size: 22px;
+    color: var(--c-text-light);
+    margin-top: auto;
+    padding-top: 20px;
+  }
+
+  .end-slide {
+    background: var(--c-bg-dark);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .end-slide h2 {
+    font-family: var(--font-serif);
+    font-size: 72px;
+    font-weight: 700;
+  }
+  .end-slide .end-sub {
+    margin-top: 36px;
+    font-size: 32px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+  }
+
+  /* Suppression effect diagram */
+  .suppression-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 0;
+  }
+  .supp-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .supp-box {
+    padding: 18px 28px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 180px;
+  }
+  .supp-arrow {
+    font-size: 32px;
+    color: var(--c-text-light);
+  }
+  .supp-label {
+    font-size: 22px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  /* Outline / TOC */
+  .outline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 40px;
+    flex: 1;
+    align-content: start;
+  }
+  .outline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 24px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--c-border);
+  }
+  .outline-item.full { grid-column: 1 / -1; }
+  .outline-num {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--c-accent);
+    font-family: var(--font-serif);
+    min-width: 48px;
+  }
+  .outline-label {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--c-text);
+  }
+  .outline-desc {
+    font-size: 24px;
+    color: var(--c-text-light);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+<!-- ============ SLIDE 1: TITLE ============ -->
+<section class="slide-title" data-label="封面">
+  <h1>知道与使用：AI素养与AI新闻接触经验<br>对受众AI新闻信任的影响机制研究</h1>
+  <div class="meta">
+    <strong>答辩人：陈向欢</strong> &nbsp;｜&nbsp; 学号：2021080256<br>
+    专业：新闻学 &nbsp;｜&nbsp; 学院：传播学院<br>
+    指导教师：<strong>虞鑫 教授</strong>
+  </div>
+</section>
+
+<!-- ============ SLIDE 2: OUTLINE ============ -->
+<section class="slide-alt" data-label="汇报提纲">
+  <h3>汇报提纲</h3>
+  <div class="outline-grid">
+    <div class="outline-item">
+      <div class="outline-num">01</div>
+      <div>
+        <div class="outline-label">研究背景与问题</div>
+        <div class="outline-desc">AI新闻信任的现实矛盾</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">02</div>
+      <div>
+        <div class="outline-label">文献综述与研究假设</div>
+        <div class="outline-desc">HSM双路径理论框架</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">03</div>
+      <div>
+        <div class="outline-label">研究方法</div>
+        <div class="outline-desc">数据来源、变量测量与分析策略</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">04</div>
+      <div>
+        <div class="outline-label">研究结果</div>
+        <div class="outline-desc">主效应、中介与调节效应</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">05</div>
+      <div>
+        <div class="outline-label">讨论与结论</div>
+        <div class="outline-desc">理论贡献与实践启示</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">06</div>
+      <div>
+        <div class="outline-label">研究局限与展望</div>
+        <div class="outline-desc">不足与未来方向</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 3: SECTION 1 ============ -->
+<section class="slide-section" data-label="研究背景与问题">
+  <h2>研究背景与问题</h2>
+  <div class="section-sub">AI新闻信任的现实矛盾：为什么"懂AI"和"用AI"的人，信任方向截然相反？</div>
+  <div class="section-num">01</div>
+</section>
+
+<!-- ============ SLIDE 4: BACKGROUND ============ -->
+<section class="slide-content" data-label="研究背景">
+  <h3>研究背景</h3>
+  <div class="two-col">
+    <div>
+      <ul class="bullet-list">
+        <li><strong>AI深度介入新闻生产：</strong>美联社、BBC、华盛顿邮报等国际媒体已广泛使用AI；国内新华社、人民日报等主流媒体加速推进AI辅助新闻生产</li>
+        <li><strong>技术效率≠公众信任：</strong>生成式AI的幻觉问题、内容同质化、新闻伦理模糊地带，持续引发受众对AI新闻可靠性的质疑</li>
+        <li><strong>Reuters Institute报告：</strong>全球受众对新闻媒体的整体信任度近年持续下滑，AI生成内容的涌现进一步加剧信任危机</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="bullet-list">
+        <li><strong>公众认知与使用快速分化：</strong>ChatGPT、DeepSeek等工具普及，高AI素养用户群体扩大；频繁接触AI内容的受众积累了各异的使用体验</li>
+        <li><strong>核心矛盾：</strong>AI素养越高的受众对AI新闻信任越强；AI新闻接触频率越高的受众对AI新闻信任反而越弱</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:32px;">
+        <strong>核心发现的预告：</strong>"知道"（AI素养）增强信任，"使用"（接触经验）消耗信任——这一矛盾构成了本研究的核心问题
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 5: RESEARCH QUESTIONS ============ -->
+<section class="slide-content" data-label="研究问题与意义">
+  <h3>研究问题与意义</h3>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div class="rq-box"><span class="rq-label">RQ1</span>AI素养与AI新闻接触频率对受众AI新闻信任的影响方向为何截然相反？</div>
+    <div class="rq-box"><span class="rq-label">RQ2</span>AI技术信任在上述两条路径中是否发挥中介作用？</div>
+    <div class="rq-box"><span class="rq-label">RQ3</span>媒体信任是否对AI新闻接触经验影响AI技术信任的路径产生调节效应？</div>
+  </div>
+  <div class="two-col" style="margin-top:36px;">
+    <div class="highlight-box">
+      <strong>理论意义：</strong>将认知型因素（AI素养）与行为型因素（接触经验）纳入同一HSM框架，解释方向相反的影响机制；区分AI技术信任与AI新闻信任两个层次
+    </div>
+    <div class="highlight-box">
+      <strong>实践意义：</strong>为新闻机构AI应用策略提供实证参考——素养教育比内容供给更能建立信任；高媒体信任受众反而更脆弱
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 6: SECTION 2 ============ -->
+<section class="slide-section" data-label="文献综述与研究假设">
+  <h2>文献综述与研究假设</h2>
+  <div class="section-sub">基于启发式-系统式模型（HSM）构建AI新闻信任的双路径分析框架</div>
+  <div class="section-num">02</div>
+</section>
+
+<!-- ============ SLIDE 7: AI NEWS TRUST ============ -->
+<section class="slide-content" data-label="AI新闻信任概念">
+  <h3>AI新闻信任：概念界定</h3>
+  <div class="two-col">
+    <div>
+      <p class="body-text" style="margin-bottom:28px;">新闻信任是受众对新闻报道的<strong>准确性、公正性与可靠性</strong>的整体评价。AI深度介入后，需要区分两个层次的信任：</p>
+      <ul class="bullet-list">
+        <li><strong>AI技术信任：</strong>对人工智能作为技术系统的整体评价，涵盖对其可靠性、安全性与社会影响的判断</li>
+        <li><strong>AI新闻信任：</strong>在媒介消费情境下，受众对具体AI生成内容的可信度评价</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:28px;">
+        白红义、万旭琪（2025）：AI不是信任发生的透明中介，而是具有自主性的"信任主体"
+      </div>
+    </div>
+    <div>
+      <p class="body-text" style="margin-bottom:28px;"><strong>关键文献发现：</strong></p>
+      <ul class="bullet-list">
+        <li>Wang & Huang（2024）元分析：机器作者身份对可信度有<strong style="color:var(--c-negative)">微弱但显著的负向效应</strong>，社会政治类新闻中尤为突出</li>
+        <li>Toff & Simon（2025）：AI标注非但没有提升信任，反而在<strong style="color:var(--c-negative)">原本信任度较高的受众</strong>中显著降低了可信度感知</li>
+        <li>陈昌凤、王金鹏（2025）：AI嵌入新闻业造成结构性权力转移，加剧公众信任危机</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 8: TWO PATHS ============ -->
+<section class="slide-alt" data-label="双路径理论">
+  <h3>HSM理论框架：系统式路径 vs 启发式路径</h3>
+  <div class="two-col" style="flex:1;">
+    <div style="background:#fff;border-radius:16px;padding:36px;border:2px solid var(--c-accent);">
+      <div style="font-size:32px;font-weight:700;color:var(--c-accent);margin-bottom:24px;">📖 系统式路径：AI素养</div>
+      <ul class="bullet-list">
+        <li><strong>AI素养的内涵：</strong>批判性评估AI技术、与AI有效协作并在日常情境中应用AI的能力集合（Long & Magerko, 2020）</li>
+        <li><strong>核心逻辑：</strong>高素养受众能系统性地理解AI的工作原理，建立基于理解而非恐惧或盲目乐观的信任</li>
+        <li><strong>"促进论"vs"怀疑论"：</strong>素养可能促进理性信任，也可能增强批判性怀疑——关键在于中介机制</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:20px;">
+        <strong>H1：</strong>AI素养越高，受众的AI技术信任越强（β>0）
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:36px;border:2px solid var(--c-highlight);">
+      <div style="font-size:32px;font-weight:700;color:var(--c-highlight);margin-bottom:24px;">⚡ 启发式路径：接触经验</div>
+      <ul class="bullet-list">
+        <li><strong>体验性知识：</strong>AI新闻接触经验是更具体、更感性的"切身体验"，容易形成难以逆转的直觉判断</li>
+        <li><strong>AI幻觉的影响：</strong>事实虚构、语境错配、逻辑断裂——频繁接触会积累负面体验（聂静虹、李肖楠, 2025）</li>
+        <li><strong>期望违背理论：</strong>受众初始抱有"机器更客观"的期望，实际体验持续打破这一预期</li>
+      </ul>
+      <div class="highlight-box negative" style="margin-top:20px;">
+        <strong>H2：</strong>AI新闻接触频率越高，AI技术信任越弱（β&lt;0）
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 9: HYPOTHESES & MODEL ============ -->
+<section class="slide-content" data-label="研究模型与假设">
+  <h3>研究模型与假设汇总</h3>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:32px;flex:1;justify-content:center;">
+    <!-- Model Diagram -->
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:16px;">
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <div class="model-box" style="font-size:24px;">AI素养<br><span style="font-size:18px;opacity:0.7;">（认知型因素）</span></div>
+        <div class="model-box" style="font-size:24px;border-color:var(--c-highlight);color:var(--c-highlight);">AI新闻接触频率<br><span style="font-size:18px;opacity:0.7;">（行为型因素）</span></div>
+      </div>
+      <div class="model-arrow">
+        <div style="font-size:18px;color:var(--c-positive);">H1 (+)</div>
+        →
+        <div style="font-size:18px;color:var(--c-negative);">H2 (−)</div>
+      </div>
+      <div class="model-box mediator" style="font-size:24px;">AI技术信任<br><span style="font-size:18px;opacity:0.85;">（中介变量）</span></div>
+      <div class="model-arrow">
+        <div style="font-size:18px;">H3 (+)</div>
+        →
+      </div>
+      <div class="model-box dv" style="font-size:24px;">AI新闻信任<br><span style="font-size:18px;opacity:0.85;">（因变量）</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="model-box moderator" style="font-size:22px;padding:16px 24px;">媒体信任（调节变量）</div>
+      <span style="font-size:22px;color:var(--c-text-light);">负向调节 AI新闻接触频率 → AI技术信任 的路径（H5）</span>
+    </div>
+  </div>
+  <div class="hypothesis-grid" style="margin-top:8px;">
+    <div class="h-card"><span class="h-label">H1</span>AI素养 → AI技术信任（+）</div>
+    <div class="h-card"><span class="h-label">H2</span>AI新闻接触频率 → AI技术信任（−）</div>
+    <div class="h-card"><span class="h-label">H3</span>AI技术信任 → AI新闻信任（+）</div>
+    <div class="h-card"><span class="h-label">H4</span>AI技术信任在两条路径中起中介作用</div>
+    <div class="h-card full"><span class="h-label">H5</span>媒体信任负向调节"AI新闻接触频率→AI技术信任"路径：媒体信任越高，负向效应越强</div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 10: SECTION 3 ============ -->
+<section class="slide-section" data-label="研究方法">
+  <h2>研究方法</h2>
+  <div class="section-sub">数据来源、变量测量与分析策略</div>
+  <div class="section-num">03</div>
+</section>
+
+<!-- ============ SLIDE 11: DATA & SAMPLE ============ -->
+<section class="slide-alt" data-label="数据来源与样本">
+  <h3>数据来源与样本说明</h3>
+  <div class="two-col">
+    <div>
+      <p class="body-text" style="margin-bottom:32px;">数据来源于课题组全球新闻学调研项目的<strong>中国受众调查数据</strong>，有效样本量 <strong>N=904</strong></p>
+      <div class="three-col" style="gap:20px;">
+        <div class="stat-card">
+          <div class="stat-num">904</div>
+          <div class="stat-label">有效样本</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-label">核心变量</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label">控制变量</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="body-text" style="margin-bottom:24px;"><strong>分析策略：</strong></p>
+      <ul class="bullet-list">
+        <li><strong>信度分析：</strong>Cronbach's α 检验各量表内部一致性</li>
+        <li><strong>描述统计与相关分析：</strong>Pearson 相关检验变量间关系</li>
+        <li><strong>中介效应检验：</strong>PROCESS宏 Model 4，Bootstrap 5000次</li>
+        <li><strong>有调节的中介效应：</strong>PROCESS宏 Model 7，Bootstrap 5000次，均值中心化处理</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 12: VARIABLES ============ -->
+<section class="slide-content" data-label="变量测量">
+  <h3>变量测量</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:140px;">变量类型</th>
+        <th style="width:220px;">变量名称</th>
+        <th>测量方式</th>
+        <th style="width:140px;">量表来源</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2">自变量</td>
+        <td><strong>AI素养</strong></td>
+        <td>改编自Long & Magerko (2020)，多维度量表，涵盖技术理解与操作能力</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td><strong>AI新闻接触频率</strong></td>
+        <td>受众自报接触AI生成新闻的频率</td>
+        <td>频率量表</td>
+      </tr>
+      <tr>
+        <td>中介变量</td>
+        <td><strong>AI技术信任</strong></td>
+        <td>对AI技术整体的可靠性、安全性与社会影响评价</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td>调节变量</td>
+        <td><strong>媒体信任</strong></td>
+        <td>受众对新闻媒体整体的信任评价</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td>因变量</td>
+        <td><strong>AI新闻信任</strong></td>
+        <td>受众对AI生成新闻内容的可信度评价</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td>控制变量</td>
+        <td colspan="3">年龄、性别、教育程度、政治兴趣</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SLIDE 13: SECTION 4 ============ -->
+<section class="slide-section" data-label="研究结果">
+  <h2>研究结果</h2>
+  <div class="section-sub">五项假设均获得数据支持</div>
+  <div class="section-num">04</div>
+</section>
+
+<!-- ============ SLIDE 14: MAIN EFFECTS ============ -->
+<section class="slide-alt" data-label="主效应检验">
+  <h3>主效应检验：H1与H2</h3>
+  <div class="two-col">
+    <div>
+      <div style="font-size:30px;font-weight:700;color:var(--c-positive);margin-bottom:20px;">✓ H1得到支持：AI素养 → AI技术信任（+）</div>
+      <table class="data-table" style="margin-bottom:24px;">
+        <thead><tr><th>变量</th><th>B</th><th>β</th><th>p</th></tr></thead>
+        <tbody>
+          <tr><td>AI素养</td><td>0.605</td><td class="positive">0.539</td><td>&lt;0.001</td></tr>
+        </tbody>
+      </table>
+      <p class="body-text">AI素养对AI技术信任有<strong>显著正向影响</strong>，标准化系数β=0.539，模型R²=0.291</p>
+      <div class="highlight-box" style="margin-top:20px;">
+        控制变量（年龄、性别、教育、政治兴趣）均不显著，说明主效应稳健
+      </div>
+    </div>
+    <div>
+      <div style="font-size:30px;font-weight:700;color:var(--c-negative);margin-bottom:20px;">✓ H2得到支持：AI新闻接触频率 → AI技术信任（−）</div>
+      <table class="data-table" style="margin-bottom:24px;">
+        <thead><tr><th>变量</th><th>B</th><th>β</th><th>p</th></tr></thead>
+        <tbody>
+          <tr><td>AI新闻接触频率</td><td>-0.043</td><td class="negative">-0.097</td><td>0.005</td></tr>
+        </tbody>
+      </table>
+      <p class="body-text">AI新闻接触频率对AI技术信任有<strong>显著负向影响</strong>，β=-0.097，模型R²=0.117</p>
+      <div class="highlight-box negative" style="margin-top:20px;">
+        性别（β=0.158）和政治兴趣（β=0.247）在此模型中也显著
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 15: MEDIATION ============ -->
+<section class="slide-content" data-label="中介效应检验">
+  <h3>中介效应检验：H3与H4</h3>
+  <table class="data-table" style="margin-bottom:28px;">
+    <thead>
+      <tr><th>变量（因变量：AI新闻信任）</th><th>B</th><th>β</th><th>p</th><th>95% CI</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AI素养（直接效应）</td><td>-0.317</td><td class="negative">-0.194</td><td>&lt;0.001</td><td>[-0.419, -0.215]</td></tr>
+      <tr><td>AI新闻接触频率（直接效应）</td><td>-0.038</td><td class="negative">-0.060</td><td>0.037</td><td>[-0.073, -0.003]</td></tr>
+      <tr><td><strong>AI技术信任（中介）</strong></td><td><strong>0.934</strong></td><td class="positive"><strong>0.649</strong></td><td><strong>&lt;0.001</strong></td><td>[0.842, 1.026]</td></tr>
+    </tbody>
+  </table>
+  <div class="two-col">
+    <div>
+      <p class="body-text" style="margin-bottom:16px;"><strong>Bootstrap间接效应（5000次）：</strong></p>
+      <ul class="bullet-list">
+        <li><strong>AI素养间接效应：</strong>0.539，CI=[0.461, 0.622]，<strong style="color:var(--c-positive)">显著</strong></li>
+        <li><strong>接触频率间接效应：</strong>-0.034，CI=[-0.058, -0.010]，<strong style="color:var(--c-positive)">显著</strong></li>
+      </ul>
+      <p class="body-text" style="margin-top:16px;">H3、H4均得到支持，两条路径均通过AI技术信任的中介得以实现，R²=0.393</p>
+    </div>
+    <div>
+      <div class="highlight-box negative">
+        <strong>重要发现——遮掩效应：</strong>加入AI技术信任后，AI素养对AI新闻信任的直接效应从正向转为<strong>负向</strong>（β=-0.194），说明AI素养同时携带"促进"与"批判"两股力量
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 16: SUPPRESSION EFFECT ============ -->
+<section class="slide-alt" data-label="遮掩效应解读">
+  <h3>遮掩效应：素养的双重作用</h3>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:36px;flex:1;justify-content:center;">
+    <div style="display:flex;align-items:stretch;gap:40px;">
+      <div style="background:#fff;border-radius:16px;padding:36px 40px;border:2px solid var(--c-positive);flex:1;max-width:800px;">
+        <div style="font-size:28px;font-weight:700;color:var(--c-positive);margin-bottom:20px;">间接效应（+）：通过AI技术信任传递</div>
+        <p class="body-text">AI素养 → <strong style="color:var(--c-positive)">+0.539</strong> → AI技术信任 → <strong style="color:var(--c-positive)">+0.649</strong> → AI新闻信任</p>
+        <p class="body-text" style="margin-top:16px;color:var(--c-text-light);">理性认知提升技术信任，间接促进新闻信任</p>
+      </div>
+      <div style="background:#fff;border-radius:16px;padding:36px 40px;border:2px solid var(--c-negative);flex:1;max-width:800px;">
+        <div style="font-size:28px;font-weight:700;color:var(--c-negative);margin-bottom:20px;">直接效应（−）：批判性认知资源</div>
+        <p class="body-text">AI素养 → <strong style="color:var(--c-negative)">-0.194</strong> → AI新闻信任</p>
+        <p class="body-text" style="margin-top:16px;color:var(--c-text-light);">对AI局限性（幻觉、偏见）的警觉，直接抑制新闻信任</p>
+      </div>
+    </div>
+    <div class="highlight-box" style="max-width:1400px;font-size:30px;text-align:center;">
+      <strong>本质：AI素养是一种"祛魅"过程</strong>——既祛除对AI技术的盲目恐惧（提升技术信任），也祛除对AI新闻的盲目信从（抑制新闻信任）。<br>两股力量的净效应为正向，但若不区分直接/间接效应，这一内在张力将被完全遮蔽。
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 17: MODERATION ============ -->
+<section class="slide-content" data-label="调节效应检验">
+  <h3>有调节的中介效应检验：H5</h3>
+  <div class="two-col">
+    <div>
+      <table class="data-table" style="margin-bottom:24px;">
+        <thead><tr><th>变量（因变量：AI技术信任）</th><th>B</th><th>β</th><th>p</th></tr></thead>
+        <tbody>
+          <tr><td>AI新闻接触频率（中心化）</td><td>-0.054</td><td class="negative">-0.123</td><td>&lt;0.001</td></tr>
+          <tr><td>媒体信任（中心化）</td><td>0.575</td><td class="positive">0.621</td><td>&lt;0.001</td></tr>
+          <tr><td><strong>交互项</strong></td><td><strong>-0.061</strong></td><td class="negative"><strong>-0.078</strong></td><td><strong>0.002</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="body-text"><strong>H5得到支持：</strong>媒体信任负向调节"AI新闻接触频率→AI技术信任"路径，R²=0.419</p>
+    </div>
+    <div>
+      <div style="font-size:28px;font-weight:600;margin-bottom:20px;">简单斜率分析：</div>
+      <div style="background:#fff;border-radius:12px;padding:28px;border:1px solid var(--c-border);margin-bottom:20px;">
+        <div style="font-size:26px;margin-bottom:12px;">🔴 <strong>高媒体信任</strong>（均值+1SD）</div>
+        <p class="body-text">斜率 = <strong style="color:var(--c-negative)">-0.086</strong>，p&lt;0.001 → <strong>显著</strong></p>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:28px;border:1px solid var(--c-border);">
+        <div style="font-size:26px;margin-bottom:12px;">🔵 <strong>低媒体信任</strong>（均值-1SD）</div>
+        <p class="body-text">斜率 = -0.023，p=0.147 → <strong>不显著</strong></p>
+      </div>
+      <div class="highlight-box negative" style="margin-top:20px;">
+        <strong>关键结论：</strong>越信任媒体的受众，频繁接触AI新闻对其技术信任的负面效应越强——"忠实受众是最脆弱的受众"
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 18: RESULTS SUMMARY ============ -->
+<section class="slide-alt" data-label="假设验证汇总">
+  <h3>研究假设验证汇总</h3>
+  <table class="data-table" style="font-size:24px;">
+    <thead>
+      <tr><th>编号</th><th>假设内容</th><th>关键统计量</th><th style="width:100px;">结果</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>H1</strong></td>
+        <td>AI素养越高，AI技术信任越强（正向）</td>
+        <td>β=0.539, p&lt;0.001</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H2</strong></td>
+        <td>AI新闻接触频率越高，AI技术信任越弱（负向）</td>
+        <td>β=-0.097, p=0.005</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H3</strong></td>
+        <td>AI技术信任对AI新闻信任有显著正向影响</td>
+        <td>β=0.649, p&lt;0.001</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H4</strong></td>
+        <td>AI技术信任在两条路径中起中介作用</td>
+        <td>Boot CI均不含0</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H5</strong></td>
+        <td>媒体信任负向调节"接触频率→AI技术信任"路径</td>
+        <td>β=-0.078, p=0.002</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="highlight-box" style="margin-top:32px;font-size:28px;">
+    <strong>附加发现：</strong>加入AI技术信任后，AI素养对AI新闻信任的直接效应转为负向（β=-0.194, p&lt;0.001），呈现<strong>遮掩效应（suppression effect）</strong>——忽视中介变量将导致对素养影响机制的误判
+  </div>
+</section>
+
+<!-- ============ SLIDE 19: SECTION 5 ============ -->
+<section class="slide-section" data-label="讨论与结论">
+  <h2>讨论与结论</h2>
+  <div class="section-sub">理论贡献、实践启示与研究局限</div>
+  <div class="section-num">05</div>
+</section>
+
+<!-- ============ SLIDE 20: THEORETICAL CONTRIBUTIONS ============ -->
+<section class="slide-content" data-label="理论贡献">
+  <h3>理论贡献</h3>
+  <div style="display:flex;flex-direction:column;gap:28px;">
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div style="min-width:64px;height:64px;border-radius:50%;background:var(--c-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;font-family:var(--font-serif);">1</div>
+      <div>
+        <div style="font-size:32px;font-weight:600;margin-bottom:8px;">构建AI新闻信任的双路径整合框架</div>
+        <p class="body-text light">将认知型因素（AI素养）与行为型因素（接触经验）纳入同一HSM框架，以双路径逻辑统一解释两者方向相反的影响机制，回应了"促进论"与"怀疑论"并立的理论困境</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div style="min-width:64px;height:64px;border-radius:50%;background:var(--c-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;font-family:var(--font-serif);">2</div>
+      <div>
+        <div style="font-size:32px;font-weight:600;margin-bottom:8px;">区分并检验AI技术信任与AI新闻信任的层次关系</div>
+        <p class="body-text light">发现AI技术信任对AI新闻信任有显著正向影响（β=0.649），并在两条路径中均发挥中介作用，为信任研究的层次化测量提供了实证支撑</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div style="min-width:64px;height:64px;border-radius:50%;background:var(--c-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;font-family:var(--font-serif);">3</div>
+      <div>
+        <div style="font-size:32px;font-weight:600;margin-bottom:8px;">揭示遮掩效应的存在及其理论意涵</div>
+        <p class="body-text light">AI素养的总效应为正向，但直接效应在引入中介变量后转为负向——素养的内在矛盾性：理性认知既是信任的建设者，也是信任的审判者。忽略中介变量将导致机制误判</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 21: PRACTICAL IMPLICATIONS ============ -->
+<section class="slide-alt" data-label="实践启示">
+  <h3>实践启示</h3>
+  <div style="display:flex;flex-direction:column;gap:32px;">
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+      <div style="background:var(--c-accent);color:#fff;padding:16px 24px;border-radius:12px;font-size:24px;font-weight:700;min-width:56px;text-align:center;">一</div>
+      <div style="flex:1;">
+        <div style="font-size:32px;font-weight:600;margin-bottom:10px;">素养教育比内容供给更能建立信任</div>
+        <p class="body-text light">让受众"懂AI"比"多看AI新闻"更能从根本上建立信任基础。新闻机构可在AI新闻中嵌入简明技术说明，将被动消费转化为认知积累。教育机构应将AI素养纳入媒介素养框架。</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+      <div style="background:var(--c-highlight);color:#fff;padding:16px 24px;border-radius:12px;font-size:24px;font-weight:700;min-width:56px;text-align:center;">二</div>
+      <div style="flex:1;">
+        <div style="font-size:32px;font-weight:600;margin-bottom:10px;">高媒体信任不是推进AI新闻的护城河</div>
+        <p class="body-text light">忠实受众对AI新闻质量最为敏感。频繁接触质量参差的AI内容，不仅降低技术信任，还可能连带损害对媒体机构本身的信任——这种损失一旦发生将难以修复。</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+      <div style="background:var(--c-bg-dark);color:#fff;padding:16px 24px;border-radius:12px;font-size:24px;font-weight:700;min-width:56px;text-align:center;">三</div>
+      <div style="flex:1;">
+        <div style="font-size:32px;font-weight:600;margin-bottom:10px;">透明度须以质量为前提</div>
+        <p class="body-text light">单纯AI标注无法提升信任（Toff & Simon, 2025）。暴露量增加≠信任增长。透明披露是必要条件，但充分条件是切实提升AI辅助内容质量。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 22: LIMITATIONS ============ -->
+<section class="slide-content" data-label="研究局限与展望">
+  <h3>研究局限与未来展望</h3>
+  <div class="two-col">
+    <div>
+      <ul class="bullet-list" style="font-size:27px;">
+        <li><strong>横截面数据的因果限制：</strong>所有变量同一时间点测量，无法排除反向因果。未来可采用追踪研究或实验设计</li>
+        <li><strong>接触频率的操作化局限：</strong>自报频率作为启发式处理的代理指标，概念对应不精确。未来可引入NFC量表直接测量加工深度</li>
+        <li><strong>样本代表性：</strong>以年轻、高学历、城市受众为主，对中老年和农村受众代表性有限</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="bullet-list" style="font-size:27px;">
+        <li><strong>单一媒体情境：</strong>聚焦中国受众，中国独特的媒体制度和AI发展生态可能影响跨文化适用性。未来可开展跨国比较</li>
+        <li><strong>AI素养量表效度：</strong>题项偏重技术理解与操作能力，对批判性反思维度覆盖有限，可能影响遮掩效应的解释</li>
+        <li><strong>共同方法偏差：</strong>所有变量由同一问卷同一时间采集，未进行CFA检验区分效度</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:28px;font-size:26px;">
+    <strong>未来方向：</strong>追踪研究验证因果 → 更全面的AI素养量表 → 跨国比较研究 → CFA检验结构效度 → 区分不同新闻类型的接触效应
+  </div>
+</section>
+
+<!-- ============ SLIDE 23: THANK YOU ============ -->
+<section class="end-slide" data-label="致谢">
+  <h2>感谢各位老师的指导与聆听</h2>
+  <div class="end-sub">
+    恳请各位老师批评指正<br>
+    答辩人：陈向欢 &nbsp;｜&nbsp; 指导教师：虞鑫 教授
+  </div>
+</section>
+
+</deck-stage>
+</body>
+</html>

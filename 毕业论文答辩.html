@@ -1,0 +1,991 @@
+<!DOCTYPE html><html lang="zh-CN" data-yd-content-ready="true"><head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毕业论文答辩 — 陈向欢</title>
+<script src="deck-stage.js"></script><script src="chrome-extension://oglffgiaiekgeicdgkdlnlkhliajdlja/injectScript.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;family=Noto+Serif+SC:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c-bg: #FFFFFF;
+    --c-bg-alt: #F4F6FA;
+    --c-bg-dark: #1A2744;
+    --c-bg-accent: #2B5EA7;
+    --c-text: #1A2744;
+    --c-text-light: #5A6A85;
+    --c-accent: #2B5EA7;
+    --c-accent-light: #4A8FE7;
+    --c-highlight: #E8563A;
+    --c-border: #D6DDE8;
+    --c-positive: #2E8B57;
+    --c-negative: #D94040;
+    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Noto Serif SC', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  section {
+    font-family: var(--font-sans);
+    color: var(--c-text);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Slide types ── */
+  .slide-title {
+    background: var(--c-bg-dark);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px;
+  }
+  .slide-title h1 {
+    font-family: var(--font-serif);
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    max-width: 1400px;
+  }
+  .slide-title .meta {
+    margin-top: 52px;
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+  }
+  .slide-title .meta strong { color: rgba(255,255,255,0.92); font-weight: 500; }
+
+  .slide-section {
+    background: var(--c-bg-accent);
+    color: #fff;
+    justify-content: center;
+    padding: 100px 120px;
+  }
+  .slide-section .section-num {
+    font-size: 120px;
+    font-weight: 700;
+    opacity: 0.15;
+    position: absolute;
+    right: 100px;
+    bottom: 60px;
+    font-family: var(--font-serif);
+  }
+  .slide-section h2 {
+    font-family: var(--font-serif);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .slide-section .section-sub {
+    margin-top: 24px;
+    font-size: 30px;
+    opacity: 0.75;
+    font-weight: 400;
+    max-width: 1000px;
+    line-height: 1.6;
+  }
+
+  .slide-content {
+    background: var(--c-bg);
+    padding: 90px 100px 80px;
+  }
+  .slide-content h3 {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 48px;
+    line-height: 1.3;
+    border-left: 6px solid var(--c-accent);
+    padding-left: 24px;
+  }
+
+  .slide-alt {
+    background: var(--c-bg-alt);
+    padding: 90px 100px 80px;
+  }
+  .slide-alt h3 {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 48px;
+    line-height: 1.3;
+    border-left: 6px solid var(--c-accent);
+    padding-left: 24px;
+  }
+
+  /* ── Shared components ── */
+  .body-text {
+    font-size: 30px;
+    line-height: 1.75;
+    color: var(--c-text);
+    max-width: 1600px;
+  }
+  .body-text.light { color: var(--c-text-light); }
+
+  .bullet-list {
+    list-style: none;
+    font-size: 30px;
+    line-height: 1.7;
+    color: var(--c-text);
+  }
+  .bullet-list li {
+    padding-left: 36px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--c-accent);
+  }
+  .bullet-list li strong { color: var(--c-accent); font-weight: 600; }
+
+  .highlight-box {
+    background: rgba(43,94,167,0.06);
+    border-left: 5px solid var(--c-accent);
+    padding: 28px 32px;
+    border-radius: 0 12px 12px 0;
+    margin-top: 24px;
+    font-size: 28px;
+    line-height: 1.7;
+    color: var(--c-text);
+  }
+  .highlight-box.negative {
+    background: rgba(217,64,64,0.06);
+    border-left-color: var(--c-negative);
+  }
+
+  .rq-box {
+    background: var(--c-bg-dark);
+    color: #fff;
+    padding: 28px 36px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 28px;
+    line-height: 1.6;
+  }
+  .rq-box .rq-label {
+    font-weight: 700;
+    color: var(--c-accent-light);
+    margin-right: 12px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    flex: 1;
+  }
+  .two-col > div { display: flex; flex-direction: column; }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    flex: 1;
+  }
+
+  .stat-card {
+    background: #fff;
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .stat-card .stat-num {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--c-accent);
+    font-family: var(--font-serif);
+  }
+  .stat-card .stat-label {
+    font-size: 24px;
+    color: var(--c-text-light);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* Tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 24px;
+  }
+  .data-table th {
+    background: var(--c-bg-dark);
+    color: #fff;
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .data-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--c-border);
+    font-size: 22px;
+    line-height: 1.5;
+  }
+  .data-table tr:nth-child(even) td { background: var(--c-bg-alt); }
+  .data-table .positive { color: var(--c-positive); font-weight: 600; }
+  .data-table .negative { color: var(--c-negative); font-weight: 600; }
+
+  /* Model diagram */
+  .model-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex: 1;
+    padding: 20px 0;
+  }
+  .model-box {
+    background: #fff;
+    border: 2.5px solid var(--c-accent);
+    border-radius: 16px;
+    padding: 24px 32px;
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--c-accent);
+    min-width: 200px;
+    line-height: 1.5;
+  }
+  .model-box.mediator {
+    background: var(--c-accent);
+    color: #fff;
+    border-color: var(--c-accent);
+  }
+  .model-box.moderator {
+    background: var(--c-highlight);
+    color: #fff;
+    border-color: var(--c-highlight);
+  }
+  .model-box.dv {
+    background: var(--c-bg-dark);
+    color: #fff;
+    border-color: var(--c-bg-dark);
+  }
+  .model-arrow {
+    font-size: 28px;
+    color: var(--c-text-light);
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .model-arrow .arrow-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--c-text-light);
+  }
+
+  .hypothesis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .h-card {
+    background: #fff;
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    font-size: 25px;
+    line-height: 1.6;
+  }
+  .h-card .h-label {
+    font-weight: 700;
+    color: var(--c-accent);
+    margin-right: 8px;
+    font-size: 26px;
+  }
+  .h-card.full { grid-column: 1 / -1; }
+
+  .result-badge {
+    display: inline-block;
+    background: var(--c-positive);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  .footnote {
+    font-size: 22px;
+    color: var(--c-text-light);
+    margin-top: auto;
+    padding-top: 20px;
+  }
+
+  .end-slide {
+    background: var(--c-bg-dark);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .end-slide h2 {
+    font-family: var(--font-serif);
+    font-size: 72px;
+    font-weight: 700;
+  }
+  .end-slide .end-sub {
+    margin-top: 36px;
+    font-size: 32px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+  }
+
+  /* Suppression effect diagram */
+  .suppression-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 0;
+  }
+  .supp-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .supp-box {
+    padding: 18px 28px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 180px;
+  }
+  .supp-arrow {
+    font-size: 32px;
+    color: var(--c-text-light);
+  }
+  .supp-label {
+    font-size: 22px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  /* Outline / TOC */
+  .outline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 40px;
+    flex: 1;
+    align-content: start;
+  }
+  .outline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 24px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--c-border);
+  }
+  .outline-item.full { grid-column: 1 / -1; }
+  .outline-num {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--c-accent);
+    font-family: var(--font-serif);
+    min-width: 48px;
+  }
+  .outline-label {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--c-text);
+  }
+  .outline-desc {
+    font-size: 24px;
+    color: var(--c-text-light);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+</style>
+<style id="deck-stage-print-page">@page { size: 1920px 1080px; margin: 0; } @media print { html, body { margin: 0 !important; padding: 0 !important; background: none !important; overflow: visible !important; height: auto !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }</style><style>body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}@media print{body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown) .swal2-container{position:static !important}}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;place-self:start center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;place-self:start end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;place-self:center center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;place-self:center end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;place-self:end center}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;place-self:end end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:hsl(0,0%,33%);font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable{cursor:grab}div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable div:where(.swal2-icon){cursor:grab}div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging{cursor:grabbing}div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging div:where(.swal2-icon){cursor:grabbing}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word;cursor:initial}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm){border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):focus-visible{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny){border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):focus-visible{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel){border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):focus-visible{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus-visible{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus-visible{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center;cursor:initial}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em;cursor:initial}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-html-container){z-index:1;justify-content:center;margin:0;padding:1em 1.6em .3em;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word;cursor:initial}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid hsl(0,0%,85%);border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:hsl(0,0%,94%);color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:rgb(249.95234375,205.965625,167.74765625);color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:rgb(156.7033492823,224.2822966507,246.2966507177);color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:rgb(200.8064516129,217.9677419355,225.1935483871);color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-toast>*{grid-column:2}.swal2-toast h2:where(.swal2-title){margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-toast .swal2-loading{justify-content:center}.swal2-toast input:where(.swal2-input){height:2em;margin:.5em;font-size:1em}.swal2-toast .swal2-validation-message{font-size:1em}.swal2-toast div:where(.swal2-footer){margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-toast button:where(.swal2-close){grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-toast div:where(.swal2-html-container){margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-toast div:where(.swal2-html-container):empty{padding:0}.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-toast div:where(.swal2-actions){justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-toast button:where(.swal2-styled){margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;border-radius:50%}.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}</style></head>
+<body data-cc-id="cc-1" style="font-size: 16px; cursor: crosshair;">
+<deck-stage width="1920" height="1080">
+
+<!-- ============ SLIDE 1: TITLE ============ -->
+<section class="slide-title" data-label="封面" data-screen-label="01 封面" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="0" data-deck-active="" data-cc-id="cc-2">
+  <h1 style="font-size: 40px">知道与使用：AI素养与AI新闻接触经验<br>对受众AI新闻信任的影响机制研究</h1>
+  <div class="meta">
+    <strong>答辩人：陈向欢</strong> &nbsp;｜&nbsp; 学号：2021080256<br>
+    专业：新闻学 &nbsp;｜&nbsp; 学院：传播学院<br>
+    指导教师：<strong>虞鑫 教授</strong>
+  </div>
+</section>
+
+<!-- ============ SLIDE 2: OUTLINE ============ -->
+<section class="slide-alt" data-label="汇报提纲" data-screen-label="02 汇报提纲" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="1">
+  <h3>汇报提纲</h3>
+  <div class="outline-grid">
+    <div class="outline-item">
+      <div class="outline-num">01</div>
+      <div>
+        <div class="outline-label">研究背景与问题</div>
+        <div class="outline-desc">AI新闻信任的现实矛盾</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">02</div>
+      <div>
+        <div class="outline-label">文献综述与研究假设</div>
+        <div class="outline-desc">HSM双路径理论框架</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">03</div>
+      <div>
+        <div class="outline-label">研究方法</div>
+        <div class="outline-desc">数据来源、变量测量与分析策略</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">04</div>
+      <div>
+        <div class="outline-label">研究结果</div>
+        <div class="outline-desc">主效应、中介与调节效应</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">05</div>
+      <div>
+        <div class="outline-label">讨论与结论</div>
+        <div class="outline-desc">理论贡献与实践启示</div>
+      </div>
+    </div>
+    <div class="outline-item">
+      <div class="outline-num">06</div>
+      <div>
+        <div class="outline-label">研究局限与展望</div>
+        <div class="outline-desc">不足与未来方向</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 3: SECTION 1 ============ -->
+<section class="slide-section" data-label="研究背景与问题" data-screen-label="03 研究背景与问题" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="2">
+  <h2>研究背景与问题</h2>
+  <div class="section-sub">AI新闻信任的现实矛盾：为什么"懂AI"和"用AI"的人，信任方向截然相反？</div>
+  <div class="section-num">01</div>
+</section>
+
+<!-- ============ SLIDE 4: BACKGROUND ============ -->
+<section class="slide-content" data-label="研究背景" data-screen-label="04 研究背景" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="3">
+  <h3>研究背景</h3>
+  <div class="two-col">
+    <div>
+      <ul class="bullet-list">
+        <li><strong>AI深度介入新闻生产：</strong>美联社、BBC、华盛顿邮报等国际媒体已广泛使用AI；国内新华社、人民日报等主流媒体加速推进AI辅助新闻生产</li>
+        <li><strong>技术效率≠公众信任：</strong>生成式AI的幻觉问题、内容同质化、新闻伦理模糊地带，持续引发受众对AI新闻可靠性的质疑</li>
+        <li><strong>Reuters Institute报告：</strong>全球受众对新闻媒体的整体信任度近年持续下滑，AI生成内容的涌现进一步加剧信任危机</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="bullet-list">
+        <li><strong>公众认知与使用快速分化：</strong>ChatGPT、DeepSeek等工具普及，高AI素养用户群体扩大；频繁接触AI内容的受众积累了各异的使用体验</li>
+        <li><strong>核心矛盾：</strong>AI素养越高的受众对AI新闻信任越强；AI新闻接触频率越高的受众对AI新闻信任反而越弱</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:32px;">
+        <strong>核心发现的预告：</strong>"知道"（AI素养）增强信任，"使用"（接触经验）消耗信任——这一矛盾构成了本研究的核心问题
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 5: RESEARCH QUESTIONS ============ -->
+<section class="slide-content" data-label="研究问题与意义" data-screen-label="05 研究问题与意义" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="4">
+  <h3>研究问题与意义</h3>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div class="rq-box"><span class="rq-label">RQ1</span>AI素养与AI新闻接触频率对受众AI新闻信任的影响方向为何截然相反？</div>
+    <div class="rq-box"><span class="rq-label">RQ2</span>AI技术信任在上述两条路径中是否发挥中介作用？</div>
+    <div class="rq-box"><span class="rq-label">RQ3</span>媒体信任是否对AI新闻接触经验影响AI技术信任的路径产生调节效应？</div>
+  </div>
+  <div class="two-col" style="margin-top:36px;">
+    <div class="highlight-box">
+      <strong>理论意义：</strong>将认知型因素（AI素养）与行为型因素（接触经验）纳入同一HSM框架，解释方向相反的影响机制；区分AI技术信任与AI新闻信任两个层次
+    </div>
+    <div class="highlight-box">
+      <strong>实践意义：</strong>为新闻机构AI应用策略提供实证参考——素养教育比内容供给更能建立信任；高媒体信任受众反而更脆弱
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 6: SECTION 2 ============ -->
+<section class="slide-section" data-label="文献综述与研究假设" data-screen-label="06 文献综述与研究假设" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="5">
+  <h2>文献综述与研究假设</h2>
+  <div class="section-sub">基于启发式-系统式模型（HSM）构建AI新闻信任的双路径分析框架</div>
+  <div class="section-num">02</div>
+</section>
+
+<!-- ============ SLIDE 7: AI NEWS TRUST ============ -->
+<section class="slide-content" data-label="AI新闻信任概念" data-screen-label="07 AI新闻信任概念" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="6">
+  <h3>AI新闻信任：概念界定</h3>
+  <div class="two-col">
+    <div>
+      <p class="body-text" style="margin-bottom:28px;">新闻信任是受众对新闻报道的<strong>准确性、公正性与可靠性</strong>的整体评价。AI深度介入后，需要区分两个层次的信任：</p>
+      <ul class="bullet-list">
+        <li><strong>AI技术信任：</strong>对人工智能作为技术系统的整体评价，涵盖对其可靠性、安全性与社会影响的判断</li>
+        <li><strong>AI新闻信任：</strong>在媒介消费情境下，受众对具体AI生成内容的可信度评价</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:28px;">
+        白红义、万旭琪（2025）：AI不是信任发生的透明中介，而是具有自主性的"信任主体"
+      </div>
+    </div>
+    <div>
+      <p class="body-text" style="margin-bottom:28px;"><strong>关键文献发现：</strong></p>
+      <ul class="bullet-list">
+        <li>Wang &amp; Huang（2024）元分析：机器作者身份对可信度有<strong style="color:var(--c-negative)">微弱但显著的负向效应</strong>，社会政治类新闻中尤为突出</li>
+        <li>Toff &amp; Simon（2025）：AI标注非但没有提升信任，反而在<strong style="color:var(--c-negative)">原本信任度较高的受众</strong>中显著降低了可信度感知</li>
+        <li>陈昌凤、王金鹏（2025）：AI嵌入新闻业造成结构性权力转移，加剧公众信任危机</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 8: TWO PATHS ============ -->
+<section class="slide-alt" data-label="双路径理论" data-screen-label="08 双路径理论" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="7">
+  <h3>HSM理论框架：系统式路径 vs 启发式路径</h3>
+  <div class="two-col" style="flex:1;">
+    <div style="background:#fff;border-radius:16px;padding:36px;border:2px solid var(--c-accent);">
+      <div style="font-size:32px;font-weight:700;color:var(--c-accent);margin-bottom:24px;">📖 系统式路径：AI素养</div>
+      <ul class="bullet-list">
+        <li><strong>AI素养的内涵：</strong>批判性评估AI技术、与AI有效协作并在日常情境中应用AI的能力集合（Long &amp; Magerko, 2020）</li>
+        <li><strong>核心逻辑：</strong>高素养受众能系统性地理解AI的工作原理，建立基于理解而非恐惧或盲目乐观的信任</li>
+        <li><strong>"促进论"vs"怀疑论"：</strong>素养可能促进理性信任，也可能增强批判性怀疑——关键在于中介机制</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:20px;">
+        <strong>H1：</strong>AI素养越高，受众的AI技术信任越强（β&gt;0）
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:36px;border:2px solid var(--c-highlight);">
+      <div style="font-size:32px;font-weight:700;color:var(--c-highlight);margin-bottom:24px;">⚡ 启发式路径：接触经验</div>
+      <ul class="bullet-list">
+        <li><strong>体验性知识：</strong>AI新闻接触经验是更具体、更感性的"切身体验"，容易形成难以逆转的直觉判断</li>
+        <li><strong>AI幻觉的影响：</strong>事实虚构、语境错配、逻辑断裂——频繁接触会积累负面体验（聂静虹、李肖楠, 2025）</li>
+        <li><strong>期望违背理论：</strong>受众初始抱有"机器更客观"的期望，实际体验持续打破这一预期</li>
+      </ul>
+      <div class="highlight-box negative" style="margin-top:20px;">
+        <strong>H2：</strong>AI新闻接触频率越高，AI技术信任越弱（β&lt;0）
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 9: HYPOTHESES & MODEL ============ -->
+<section class="slide-content" data-label="研究模型与假设" data-screen-label="09 研究模型与假设" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="8">
+  <h3>研究模型与假设汇总</h3>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:32px;flex:1;justify-content:center;">
+    <!-- Model Diagram -->
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:16px;">
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <div class="model-box" style="font-size:24px;">AI素养<br><span style="font-size:18px;opacity:0.7;">（认知型因素）</span></div>
+        <div class="model-box" style="font-size:24px;border-color:var(--c-highlight);color:var(--c-highlight);">AI新闻接触频率<br><span style="font-size:18px;opacity:0.7;">（行为型因素）</span></div>
+      </div>
+      <div class="model-arrow">
+        <div style="font-size:18px;color:var(--c-positive);">H1 (+)</div>
+        →
+        <div style="font-size:18px;color:var(--c-negative);">H2 (−)</div>
+      </div>
+      <div class="model-box mediator" style="font-size:24px;">AI技术信任<br><span style="font-size:18px;opacity:0.85;">（中介变量）</span></div>
+      <div class="model-arrow">
+        <div style="font-size:18px;">H3 (+)</div>
+        →
+      </div>
+      <div class="model-box dv" style="font-size:24px;">AI新闻信任<br><span style="font-size:18px;opacity:0.85;">（因变量）</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="model-box moderator" style="font-size:22px;padding:16px 24px;">媒体信任（调节变量）</div>
+      <span style="font-size:22px;color:var(--c-text-light);">负向调节 AI新闻接触频率 → AI技术信任 的路径（H5）</span>
+    </div>
+  </div>
+  <div class="hypothesis-grid" style="margin-top:8px;">
+    <div class="h-card"><span class="h-label">H1</span>AI素养 → AI技术信任（+）</div>
+    <div class="h-card"><span class="h-label">H2</span>AI新闻接触频率 → AI技术信任（−）</div>
+    <div class="h-card"><span class="h-label">H3</span>AI技术信任 → AI新闻信任（+）</div>
+    <div class="h-card"><span class="h-label">H4</span>AI技术信任在两条路径中起中介作用</div>
+    <div class="h-card full"><span class="h-label">H5</span>媒体信任负向调节"AI新闻接触频率→AI技术信任"路径：媒体信任越高，负向效应越强</div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 10: SECTION 3 ============ -->
+<section class="slide-section" data-label="研究方法" data-screen-label="10 研究方法" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="9">
+  <h2>研究方法</h2>
+  <div class="section-sub">数据来源、变量测量与分析策略</div>
+  <div class="section-num">03</div>
+</section>
+
+<!-- ============ SLIDE 11: DATA & SAMPLE ============ -->
+<section class="slide-alt" data-label="数据来源与样本" data-screen-label="11 数据来源与样本" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="10">
+  <h3>数据来源与样本说明</h3>
+  <div class="two-col">
+    <div>
+      <p class="body-text" style="margin-bottom:32px;">数据来源于课题组全球新闻学调研项目的<strong>中国受众调查数据</strong>，有效样本量 <strong>N=904</strong></p>
+      <div class="three-col" style="gap:20px;">
+        <div class="stat-card">
+          <div class="stat-num">904</div>
+          <div class="stat-label">有效样本</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-label">核心变量</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label">控制变量</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="body-text" style="margin-bottom:24px;"><strong>分析策略：</strong></p>
+      <ul class="bullet-list">
+        <li><strong>信度分析：</strong>Cronbach's α 检验各量表内部一致性</li>
+        <li><strong>描述统计与相关分析：</strong>Pearson 相关检验变量间关系</li>
+        <li><strong>中介效应检验：</strong>PROCESS宏 Model 4，Bootstrap 5000次</li>
+        <li><strong>有调节的中介效应：</strong>PROCESS宏 Model 7，Bootstrap 5000次，均值中心化处理</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 12: VARIABLES ============ -->
+<section class="slide-content" data-label="变量测量" data-screen-label="12 变量测量" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="11">
+  <h3>变量测量</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:140px;">变量类型</th>
+        <th style="width:220px;">变量名称</th>
+        <th>测量方式</th>
+        <th style="width:140px;">量表来源</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2">自变量</td>
+        <td><strong>AI素养</strong></td>
+        <td>改编自Long &amp; Magerko (2020)，多维度量表，涵盖技术理解与操作能力</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td><strong>AI新闻接触频率</strong></td>
+        <td>受众自报接触AI生成新闻的频率</td>
+        <td>频率量表</td>
+      </tr>
+      <tr>
+        <td>中介变量</td>
+        <td><strong>AI技术信任</strong></td>
+        <td>对AI技术整体的可靠性、安全性与社会影响评价</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td>调节变量</td>
+        <td><strong>媒体信任</strong></td>
+        <td>受众对新闻媒体整体的信任评价</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td>因变量</td>
+        <td><strong>AI新闻信任</strong></td>
+        <td>受众对AI生成新闻内容的可信度评价</td>
+        <td>Likert量表</td>
+      </tr>
+      <tr>
+        <td>控制变量</td>
+        <td colspan="3">年龄、性别、教育程度、政治兴趣</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SLIDE 13: SECTION 4 ============ -->
+<section class="slide-section" data-label="研究结果" data-screen-label="13 研究结果" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="12">
+  <h2>研究结果</h2>
+  <div class="section-sub">五项假设均获得数据支持</div>
+  <div class="section-num">04</div>
+</section>
+
+<!-- ============ SLIDE 14: MAIN EFFECTS ============ -->
+<section class="slide-alt" data-label="主效应检验" data-screen-label="14 主效应检验" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="13">
+  <h3>主效应检验：H1与H2</h3>
+  <div class="two-col">
+    <div>
+      <div style="font-size:30px;font-weight:700;color:var(--c-positive);margin-bottom:20px;">✓ H1得到支持：AI素养 → AI技术信任（+）</div>
+      <table class="data-table" style="margin-bottom:24px;">
+        <thead><tr><th>变量</th><th>B</th><th>β</th><th>p</th></tr></thead>
+        <tbody>
+          <tr><td>AI素养</td><td>0.605</td><td class="positive">0.539</td><td>&lt;0.001</td></tr>
+        </tbody>
+      </table>
+      <p class="body-text">AI素养对AI技术信任有<strong>显著正向影响</strong>，标准化系数β=0.539，模型R²=0.291</p>
+      <div class="highlight-box" style="margin-top:20px;">
+        控制变量（年龄、性别、教育、政治兴趣）均不显著，说明主效应稳健
+      </div>
+    </div>
+    <div>
+      <div style="font-size:30px;font-weight:700;color:var(--c-negative);margin-bottom:20px;">✓ H2得到支持：AI新闻接触频率 → AI技术信任（−）</div>
+      <table class="data-table" style="margin-bottom:24px;">
+        <thead><tr><th>变量</th><th>B</th><th>β</th><th>p</th></tr></thead>
+        <tbody>
+          <tr><td>AI新闻接触频率</td><td>-0.043</td><td class="negative">-0.097</td><td>0.005</td></tr>
+        </tbody>
+      </table>
+      <p class="body-text">AI新闻接触频率对AI技术信任有<strong>显著负向影响</strong>，β=-0.097，模型R²=0.117</p>
+      <div class="highlight-box negative" style="margin-top:20px;">
+        性别（β=0.158）和政治兴趣（β=0.247）在此模型中也显著
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 15: MEDIATION ============ -->
+<section class="slide-content" data-label="中介效应检验" data-screen-label="15 中介效应检验" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="14">
+  <h3>中介效应检验：H3与H4</h3>
+  <table class="data-table" style="margin-bottom:28px;">
+    <thead>
+      <tr><th>变量（因变量：AI新闻信任）</th><th>B</th><th>β</th><th>p</th><th>95% CI</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AI素养（直接效应）</td><td>-0.317</td><td class="negative">-0.194</td><td>&lt;0.001</td><td>[-0.419, -0.215]</td></tr>
+      <tr><td>AI新闻接触频率（直接效应）</td><td>-0.038</td><td class="negative">-0.060</td><td>0.037</td><td>[-0.073, -0.003]</td></tr>
+      <tr><td><strong>AI技术信任（中介）</strong></td><td><strong>0.934</strong></td><td class="positive"><strong>0.649</strong></td><td><strong>&lt;0.001</strong></td><td>[0.842, 1.026]</td></tr>
+    </tbody>
+  </table>
+  <div class="two-col">
+    <div>
+      <p class="body-text" style="margin-bottom:16px;"><strong>Bootstrap间接效应（5000次）：</strong></p>
+      <ul class="bullet-list">
+        <li><strong>AI素养间接效应：</strong>0.539，CI=[0.461, 0.622]，<strong style="color:var(--c-positive)">显著</strong></li>
+        <li><strong>接触频率间接效应：</strong>-0.034，CI=[-0.058, -0.010]，<strong style="color:var(--c-positive)">显著</strong></li>
+      </ul>
+      <p class="body-text" style="margin-top:16px;">H3、H4均得到支持，两条路径均通过AI技术信任的中介得以实现，R²=0.393</p>
+    </div>
+    <div>
+      <div class="highlight-box negative">
+        <strong>重要发现——遮掩效应：</strong>加入AI技术信任后，AI素养对AI新闻信任的直接效应从正向转为<strong>负向</strong>（β=-0.194），说明AI素养同时携带"促进"与"批判"两股力量
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 16: SUPPRESSION EFFECT ============ -->
+<section class="slide-alt" data-label="遮掩效应解读" data-screen-label="16 遮掩效应解读" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="15">
+  <h3>遮掩效应：素养的双重作用</h3>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:36px;flex:1;justify-content:center;">
+    <div style="display:flex;align-items:stretch;gap:40px;">
+      <div style="background:#fff;border-radius:16px;padding:36px 40px;border:2px solid var(--c-positive);flex:1;max-width:800px;">
+        <div style="font-size:28px;font-weight:700;color:var(--c-positive);margin-bottom:20px;">间接效应（+）：通过AI技术信任传递</div>
+        <p class="body-text">AI素养 → <strong style="color:var(--c-positive)">+0.539</strong> → AI技术信任 → <strong style="color:var(--c-positive)">+0.649</strong> → AI新闻信任</p>
+        <p class="body-text" style="margin-top:16px;color:var(--c-text-light);">理性认知提升技术信任，间接促进新闻信任</p>
+      </div>
+      <div style="background:#fff;border-radius:16px;padding:36px 40px;border:2px solid var(--c-negative);flex:1;max-width:800px;">
+        <div style="font-size:28px;font-weight:700;color:var(--c-negative);margin-bottom:20px;">直接效应（−）：批判性认知资源</div>
+        <p class="body-text">AI素养 → <strong style="color:var(--c-negative)">-0.194</strong> → AI新闻信任</p>
+        <p class="body-text" style="margin-top:16px;color:var(--c-text-light);">对AI局限性（幻觉、偏见）的警觉，直接抑制新闻信任</p>
+      </div>
+    </div>
+    <div class="highlight-box" style="max-width:1400px;font-size:30px;text-align:center;">
+      <strong>本质：AI素养是一种"祛魅"过程</strong>——既祛除对AI技术的盲目恐惧（提升技术信任），也祛除对AI新闻的盲目信从（抑制新闻信任）。<br>两股力量的净效应为正向，但若不区分直接/间接效应，这一内在张力将被完全遮蔽。
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 17: MODERATION ============ -->
+<section class="slide-content" data-label="调节效应检验" data-screen-label="17 调节效应检验" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="16">
+  <h3>有调节的中介效应检验：H5</h3>
+  <div class="two-col">
+    <div>
+      <table class="data-table" style="margin-bottom:24px;">
+        <thead><tr><th>变量（因变量：AI技术信任）</th><th>B</th><th>β</th><th>p</th></tr></thead>
+        <tbody>
+          <tr><td>AI新闻接触频率（中心化）</td><td>-0.054</td><td class="negative">-0.123</td><td>&lt;0.001</td></tr>
+          <tr><td>媒体信任（中心化）</td><td>0.575</td><td class="positive">0.621</td><td>&lt;0.001</td></tr>
+          <tr><td><strong>交互项</strong></td><td><strong>-0.061</strong></td><td class="negative"><strong>-0.078</strong></td><td><strong>0.002</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="body-text"><strong>H5得到支持：</strong>媒体信任负向调节"AI新闻接触频率→AI技术信任"路径，R²=0.419</p>
+    </div>
+    <div>
+      <div style="font-size:28px;font-weight:600;margin-bottom:20px;">简单斜率分析：</div>
+      <div style="background:#fff;border-radius:12px;padding:28px;border:1px solid var(--c-border);margin-bottom:20px;">
+        <div style="font-size:26px;margin-bottom:12px;">🔴 <strong>高媒体信任</strong>（均值+1SD）</div>
+        <p class="body-text">斜率 = <strong style="color:var(--c-negative)">-0.086</strong>，p&lt;0.001 → <strong>显著</strong></p>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:28px;border:1px solid var(--c-border);">
+        <div style="font-size:26px;margin-bottom:12px;">🔵 <strong>低媒体信任</strong>（均值-1SD）</div>
+        <p class="body-text">斜率 = -0.023，p=0.147 → <strong>不显著</strong></p>
+      </div>
+      <div class="highlight-box negative" style="margin-top:20px;">
+        <strong>关键结论：</strong>越信任媒体的受众，频繁接触AI新闻对其技术信任的负面效应越强——"忠实受众是最脆弱的受众"
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 18: RESULTS SUMMARY ============ -->
+<section class="slide-alt" data-label="假设验证汇总" data-screen-label="18 假设验证汇总" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="17">
+  <h3>研究假设验证汇总</h3>
+  <table class="data-table" style="font-size:24px;">
+    <thead>
+      <tr><th>编号</th><th>假设内容</th><th>关键统计量</th><th style="width:100px;">结果</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>H1</strong></td>
+        <td>AI素养越高，AI技术信任越强（正向）</td>
+        <td>β=0.539, p&lt;0.001</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H2</strong></td>
+        <td>AI新闻接触频率越高，AI技术信任越弱（负向）</td>
+        <td>β=-0.097, p=0.005</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H3</strong></td>
+        <td>AI技术信任对AI新闻信任有显著正向影响</td>
+        <td>β=0.649, p&lt;0.001</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H4</strong></td>
+        <td>AI技术信任在两条路径中起中介作用</td>
+        <td>Boot CI均不含0</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+      <tr>
+        <td><strong>H5</strong></td>
+        <td>媒体信任负向调节"接触频率→AI技术信任"路径</td>
+        <td>β=-0.078, p=0.002</td>
+        <td><span class="result-badge">支持</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="highlight-box" style="margin-top:32px;font-size:28px;">
+    <strong>附加发现：</strong>加入AI技术信任后，AI素养对AI新闻信任的直接效应转为负向（β=-0.194, p&lt;0.001），呈现<strong>遮掩效应（suppression effect）</strong>——忽视中介变量将导致对素养影响机制的误判
+  </div>
+</section>
+
+<!-- ============ SLIDE 19: SECTION 5 ============ -->
+<section class="slide-section" data-label="讨论与结论" data-screen-label="19 讨论与结论" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="18">
+  <h2>讨论与结论</h2>
+  <div class="section-sub">理论贡献、实践启示与研究局限</div>
+  <div class="section-num">05</div>
+</section>
+
+<!-- ============ SLIDE 20: THEORETICAL CONTRIBUTIONS ============ -->
+<section class="slide-content" data-label="理论贡献" data-screen-label="20 理论贡献" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="19">
+  <h3>理论贡献</h3>
+  <div style="display:flex;flex-direction:column;gap:28px;">
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div style="min-width:64px;height:64px;border-radius:50%;background:var(--c-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;font-family:var(--font-serif);">1</div>
+      <div>
+        <div style="font-size:32px;font-weight:600;margin-bottom:8px;">构建AI新闻信任的双路径整合框架</div>
+        <p class="body-text light">将认知型因素（AI素养）与行为型因素（接触经验）纳入同一HSM框架，以双路径逻辑统一解释两者方向相反的影响机制，回应了"促进论"与"怀疑论"并立的理论困境</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div style="min-width:64px;height:64px;border-radius:50%;background:var(--c-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;font-family:var(--font-serif);">2</div>
+      <div>
+        <div style="font-size:32px;font-weight:600;margin-bottom:8px;">区分并检验AI技术信任与AI新闻信任的层次关系</div>
+        <p class="body-text light">发现AI技术信任对AI新闻信任有显著正向影响（β=0.649），并在两条路径中均发挥中介作用，为信任研究的层次化测量提供了实证支撑</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div style="min-width:64px;height:64px;border-radius:50%;background:var(--c-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;font-family:var(--font-serif);">3</div>
+      <div>
+        <div style="font-size:32px;font-weight:600;margin-bottom:8px;">揭示遮掩效应的存在及其理论意涵</div>
+        <p class="body-text light">AI素养的总效应为正向，但直接效应在引入中介变量后转为负向——素养的内在矛盾性：理性认知既是信任的建设者，也是信任的审判者。忽略中介变量将导致机制误判</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 21: PRACTICAL IMPLICATIONS ============ -->
+<section class="slide-alt" data-label="实践启示" data-screen-label="21 实践启示" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="20">
+  <h3>实践启示</h3>
+  <div style="display:flex;flex-direction:column;gap:32px;">
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+      <div style="background:var(--c-accent);color:#fff;padding:16px 24px;border-radius:12px;font-size:24px;font-weight:700;min-width:56px;text-align:center;">一</div>
+      <div style="flex:1;">
+        <div style="font-size:32px;font-weight:600;margin-bottom:10px;">素养教育比内容供给更能建立信任</div>
+        <p class="body-text light">让受众"懂AI"比"多看AI新闻"更能从根本上建立信任基础。新闻机构可在AI新闻中嵌入简明技术说明，将被动消费转化为认知积累。教育机构应将AI素养纳入媒介素养框架。</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+      <div style="background:var(--c-highlight);color:#fff;padding:16px 24px;border-radius:12px;font-size:24px;font-weight:700;min-width:56px;text-align:center;">二</div>
+      <div style="flex:1;">
+        <div style="font-size:32px;font-weight:600;margin-bottom:10px;">高媒体信任不是推进AI新闻的护城河</div>
+        <p class="body-text light">忠实受众对AI新闻质量最为敏感。频繁接触质量参差的AI内容，不仅降低技术信任，还可能连带损害对媒体机构本身的信任——这种损失一旦发生将难以修复。</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+      <div style="background:var(--c-bg-dark);color:#fff;padding:16px 24px;border-radius:12px;font-size:24px;font-weight:700;min-width:56px;text-align:center;">三</div>
+      <div style="flex:1;">
+        <div style="font-size:32px;font-weight:600;margin-bottom:10px;">透明度须以质量为前提</div>
+        <p class="body-text light">单纯AI标注无法提升信任（Toff &amp; Simon, 2025）。暴露量增加≠信任增长。透明披露是必要条件，但充分条件是切实提升AI辅助内容质量。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 22: LIMITATIONS ============ -->
+<section class="slide-content" data-label="研究局限与展望" data-screen-label="22 研究局限与展望" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="21">
+  <h3>研究局限与未来展望</h3>
+  <div class="two-col">
+    <div>
+      <ul class="bullet-list" style="font-size:27px;">
+        <li><strong>横截面数据的因果限制：</strong>所有变量同一时间点测量，无法排除反向因果。未来可采用追踪研究或实验设计</li>
+        <li><strong>接触频率的操作化局限：</strong>自报频率作为启发式处理的代理指标，概念对应不精确。未来可引入NFC量表直接测量加工深度</li>
+        <li><strong>样本代表性：</strong>以年轻、高学历、城市受众为主，对中老年和农村受众代表性有限</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="bullet-list" style="font-size:27px;">
+        <li><strong>单一媒体情境：</strong>聚焦中国受众，中国独特的媒体制度和AI发展生态可能影响跨文化适用性。未来可开展跨国比较</li>
+        <li><strong>AI素养量表效度：</strong>题项偏重技术理解与操作能力，对批判性反思维度覆盖有限，可能影响遮掩效应的解释</li>
+        <li><strong>共同方法偏差：</strong>所有变量由同一问卷同一时间采集，未进行CFA检验区分效度</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:28px;font-size:26px;">
+    <strong>未来方向：</strong>追踪研究验证因果 → 更全面的AI素养量表 → 跨国比较研究 → CFA检验结构效度 → 区分不同新闻类型的接触效应
+  </div>
+</section>
+
+<!-- ============ SLIDE 23: THANK YOU ============ -->
+<section class="end-slide" data-label="致谢" data-screen-label="23 致谢" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="22">
+  <h2>感谢各位老师的指导与聆听</h2>
+  <div class="end-sub">
+    恳请各位老师批评指正<br>
+    答辩人：陈向欢 &nbsp;｜&nbsp; 指导教师：虞鑫 教授
+  </div>
+</section>
+
+</deck-stage>
+
+
+</body><chatgpt-sidebar data-rendered="true" data-gpts-theme="light"></chatgpt-sidebar></html>
